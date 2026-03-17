@@ -1,47 +1,109 @@
 body {
-    font-family: Arial;
-    background: #f4f4f4;
-    text-align: center;
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: radial-gradient(circle, #0f172a, #020617);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
+/* CARD */
 .container {
-    background: white;
-    width: 350px;
-    margin: 50px auto;
+    width: 320px;
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
     padding: 20px;
-    border-radius: 10px;
+    color: white;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
 }
 
+h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+p {
+    color: #94a3b8;
+    font-size: 14px;
+}
+
+/* INPUT */
 input {
-    padding: 10px;
-    width: 80%;
-    margin: 5px 0;
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    background: rgba(255,255,255,0.08);
+    color: white;
 }
 
+/* BUTTON */
 button {
-    padding: 8px 12px;
-    margin: 5px;
+    width: 100%;
+    padding: 12px;
+    margin-top: 8px;
+    border-radius: 12px;
+    border: none;
     cursor: pointer;
+    color: white;
 }
 
+/* warna tombol */
+.add-btn {
+    background: linear-gradient(135deg, #3b82f6, #6366f1);
+    font-size: 18px;
+}
+
+.search-btn {
+    background: #2563eb;
+}
+
+.reset-btn {
+    background: #475569;
+}
+
+/* LIST */
 ul {
     list-style: none;
     padding: 0;
+    margin-top: 10px;
 }
 
 li {
-    background: #e3e3e3;
-    margin: 8px 0;
+    background: rgba(255,255,255,0.05);
     padding: 10px;
+    margin-top: 8px;
+    border-radius: 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
+/* tombol kecil */
 .btn-group button {
+    width: auto;
+    padding: 5px 8px;
+    font-size: 12px;
     margin-left: 5px;
 }
 
-.search-box {
+/* edit & hapus */
+.edit {
+    background: #facc15;
+    color: black;
+}
+
+.delete {
+    background: #ef4444;
+}
+
+/* footer */
+.footer {
     margin-top: 10px;
+    font-size: 12px;
+    color: #94a3b8;
 }
