@@ -66,5 +66,16 @@ function hapus(index) {
     render();
 }
 
+// SEARCH
+function cari() {
+    let keyword = document.getElementById("searchInput").value.toLowerCase();
+
+    let hasil = data.filter(item =>
+        item.toLowerCase().includes(keyword)
+    );
+
+    render(hasil);
+}
+
 // load awal
 render();
