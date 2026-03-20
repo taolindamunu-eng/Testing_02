@@ -1,81 +1,101 @@
-let data = [];
+// Ambil data dari localStorage
+let dataTugas = JSON.parse(localStorage.getItem("tugas")) || [];
 
-// READ / TAMPILKAN
-function render(listData = data) {
-    let list = document.getElementById("list");
+// ================= READ =================
+function tampilkanTugas() {
+    let list = document.getElementById("taskList");
     list.innerHTML = "";
 
-    listData.forEach((item, index) => {
-        let li = document.createElement("li");
-
-        let span = document.createElement("span");
-        span.textContent = item;
-
-        let div = document.createElement("div");
-        div.classList.add("btn-group");
-
-        let editBtn = document.createElement("button");
-        editBtn.textContent = "Edit";
-        editBtn.classList.add("edit");
-        editBtn.onclick = () => edit(index);
-
-        let deleteBtn = document.createElement("button");
-        deleteBtn.textContent = "X";
-        deleteBtn.classList.add("delete");
-        deleteBtn.onclick = () => hapus(index);
-
-        div.appendChild(editBtn);
-        div.appendChild(deleteBtn);
-
-        li.appendChild(span);
-        li.appendChild(div);
-
-        list.appendChild(li);
+    dataTugas.forEach((tugas, index) => {
+        buatItem(tugas, index);
     });
-
-    document.getElementById("info").innerText = data.length + " tugas";
 }
 
-// CREATE
-function tambah() {
+// ================= CREATE =================
+function tambahTugas() {
     let input = document.getElementById("taskInput");
+    let tugas = input.value;
 
-    if (input.value === "") {
-        alert("Isi dulu!");
+    if (tugas === "") {
+        alert("Tugas tidak boleh kosong!");
         return;
     }
 
-    data.push(input.value);
+    dataTugas.push(tugas);
+    simpanData();
+    tampilkanTugas();
+
     input.value = "";
-    render();
 }
 
-// UPDATE
-function edit(index) {
-    let baru = prompt("Edit tugas:", data[index]);
+// ================= UPDATE =================
+function updateTugas(index) {
+    let tugasBaru = prompt("Edit tugas:", dataTugas[index]);
 
-    if (baru !== null && baru !== "") {
-        data[index] = baru;
-        render();
+    if (tugasBaru !== null && tugasBaru !== "") {
+        dataTugas[index] = tugasBaru;
+        simpanData();
+        tampilkanTugas();
     }
 }
 
-// DELETE
-function hapus(index) {
-    data.splice(index, 1);
-    render();
+// ================= DELETE =================
+function hapusTugas(index) {
+    dataTugas.splice(index, 1);
+    simpanData();
+    tampilkanTugas();
 }
 
-// SEARCH
-function cari() {
+// ================= SEARCH (pakai tombol) =================
+function cariTugas() {
     let keyword = document.getElementById("searchInput").value.toLowerCase();
+    let list = document.getElementById("taskList");
+    list.innerHTML = "";
 
-    let hasil = data.filter(item =>
-        item.toLowerCase().includes(keyword)
-    );
-
-    render(hasil);
+    dataTugas.forEach((tugas, index) => {
+        if (tugas.toLowerCase().includes(keyword)) {
+            buatItem(tugas, index);
+        }
+    });
 }
 
-// load awal
-render();
+// ================= FUNCTION TAMBAHAN =================
+function buatItem(tugas, index) {
+    let list = document.getElementById("taskList");
+
+    let li = document.createElement("li");
+
+    let span = document.createElement("span");
+    span.textContent = tugas;
+
+    let div = document.createElement("div");
+    div.classList.add("btn-group");
+
+    let btnEdit = document.createElement("button");
+    btnEdit.textContent = "Edit";
+    btnEdit.onclick = function() {
+        updateTugas(index);
+    };
+
+    let btnHapus = document.createElement("button");
+    btnHapus.textContent = "Hapus";
+    btnHapus.onclick = function() {
+        hapusTugas(index);
+    };
+
+    div.appendChild(btnEdit);
+    div.appendChild(btnHapus);
+
+    li.appendChild(span);
+    li.appendChild(div);
+
+    list.appendChild(li);
+}
+
+// ================= SIMPAN DATA =================
+function simpanData() {
+    localStorage.setItem("tugas", JSON.stringify(dataTugas));
+}
+
+// ================= LOAD AWAL =================
+tampilkanTugas();

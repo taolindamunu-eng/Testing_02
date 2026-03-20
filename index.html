@@ -2,28 +2,27 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>Daftar Tugas</title>
+    <title>To Do List CRUD</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <div class="container">
-    <h1>Daftar Tugas</h1>
-    <p>Atur dan selesaikan tugas harianmu</p>
+    <h1>To Do List</h1>
 
     <!-- INPUT -->
-    <input type="text" id="taskInput" placeholder="Tambah tugas...">
-    <button class="add-btn" onclick="tambah()">+</button>
+    <input type="text" id="taskInput" placeholder="Masukkan tugas">
+    <button onclick="tambahTugas()">Tambah</button>
 
     <!-- SEARCH -->
-    <input type="text" id="searchInput" placeholder="Cari tugas...">
-    <button class="search-btn" onclick="cari()">Cari</button>
-    <button class="reset-btn" onclick="render()">Reset</button>
+    <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Cari tugas...">
+        <button onclick="cariTugas()">Cari</button>
+        <button onclick="tampilkanTugas()">Reset</button>
+    </div>
 
     <!-- LIST -->
-    <ul id="list"></ul>
-
-    <div class="footer" id="info"></div>
+    <ul id="taskList"></ul>
 </div>
 
 <script src="script.js"></script>
