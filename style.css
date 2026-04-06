@@ -1,109 +1,48 @@
+/* ===== Latar & Kotak ===== */
 body {
-    margin: 0;
-    font-family: 'Segoe UI', sans-serif;
-    background: radial-gradient(circle, #0f172a, #020617);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    font-family: Arial, sans-serif;               /* Font utama */
+    background: linear-gradient(135deg,#74ebd5,#ACB6E5); /* Gradient */
+    display: flex; justify-content: center; align-items: flex-start;
+    min-height: 100vh; padding-top: 50px; margin: 0;
 }
 
-/* CARD */
 .container {
-    width: 320px;
-    background: rgba(255,255,255,0.05);
-    backdrop-filter: blur(15px);
-    border-radius: 20px;
-    padding: 20px;
-    color: white;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+    background: #ffffff; padding: 25px 40px; border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2); width: 700px;
+    transition: transform 0.2s;
 }
+.container:hover { transform: scale(1.02); }
 
-h1 {
-    margin: 0;
-    font-size: 24px;
+/* ===== Judul ===== */
+h2 { text-align: center; color: #51aa64; margin-bottom: 20px; }
+
+/* ===== Input & Tombol Tambah ===== */
+input, button {
+    width: 100%; padding: 12px; border-radius: 8px; font-size: 16px; margin-bottom: 12px; box-sizing: border-box;
 }
+input { border: 1px solid #ccc; outline: none; transition: border-color 0.2s; }
+input:focus { border-color: #4CAF50; }
+button { border: none; background: #4CAF50; color: #fff; cursor: pointer; transition: 0.2s; }
+button:hover { background: #45a049; transform: scale(1.05); }
 
-p {
-    color: #94a3b8;
-    font-size: 14px;
-}
-
-/* INPUT */
-input {
-    width: 100%;
-    padding: 12px;
-    margin-top: 10px;
-    border-radius: 10px;
-    border: none;
-    outline: none;
-    background: rgba(255,255,255,0.08);
-    color: white;
-}
-
-/* BUTTON */
-button {
-    width: 100%;
-    padding: 12px;
-    margin-top: 8px;
-    border-radius: 12px;
-    border: none;
-    cursor: pointer;
-    color: white;
-}
-
-/* warna tombol */
-.add-btn {
-    background: linear-gradient(135deg, #3b82f6, #6366f1);
-    font-size: 18px;
-}
-
-.search-btn {
-    background: #2563eb;
-}
-
-.reset-btn {
-    background: #475569;
-}
-
-/* LIST */
-ul {
-    list-style: none;
-    padding: 0;
-    margin-top: 10px;
-}
-
+/* ===== List Tugas ===== */
+ul { list-style: none; padding: 0; margin-top: 20px; }
 li {
-    background: rgba(255,255,255,0.05);
-    padding: 10px;
-    margin-top: 8px;
-    border-radius: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 10px; margin-bottom: 10px; border-radius: 10px;
+    background: #4ECDC4; color: #fff; font-weight: 500;
+    opacity: 0; transform: translateY(-10px); animation: slideIn 0.3s forwards;
 }
 
-/* tombol kecil */
-.btn-group button {
-    width: auto;
-    padding: 5px 8px;
-    font-size: 12px;
-    margin-left: 5px;
+/* Tombol hapus */
+.delete-btn { background: #FF6B6B; border: none; color: #fff;padding: 4px 6px;          
+border-radius: 7px; cursor: pointer; transition: 0.2s; margin-left: 10px;width: auto;               
+min-width: 0;text-align: center;  
 }
 
-/* edit & hapus */
-.edit {
-    background: #facc15;
-    color: black;
+.delete-btn:hover { 
+    transform: scale(1.1); 
 }
-
-.delete {
-    background: #ef4444;
-}
-
-/* footer */
-.footer {
-    margin-top: 10px;
-    font-size: 12px;
-    color: #94a3b8;
-}
+/* ===== Animasi ===== */
+@keyframes slideIn { to { opacity: 1; transform: translateY(0); } }
+li.fade-out { opacity: 0; transform: translateX(100%) rotate(10deg); transition: all 0.3s; }

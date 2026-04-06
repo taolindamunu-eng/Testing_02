@@ -1,81 +1,35 @@
-let data = [];
+window.onload = function() {
+    const addBtn = document.getElementById("addBtn");
+    const taskInput = document.getElementById("taskInput");
+    const taskList = document.getElementById("taskList");
 
-// READ / TAMPILKAN
-function render(listData = data) {
-    let list = document.getElementById("list");
-    list.innerHTML = "";
+    addBtn.addEventListener("click", addTask);
 
-    listData.forEach((item, index) => {
-        let li = document.createElement("li");
-
-        let span = document.createElement("span");
-        span.textContent = item;
-
-        let div = document.createElement("div");
-        div.classList.add("btn-group");
-
-        let editBtn = document.createElement("button");
-        editBtn.textContent = "Edit";
-        editBtn.classList.add("edit");
-        editBtn.onclick = () => edit(index);
-
-        let deleteBtn = document.createElement("button");
-        deleteBtn.textContent = "X";
-        deleteBtn.classList.add("delete");
-        deleteBtn.onclick = () => hapus(index);
-
-        div.appendChild(editBtn);
-        div.appendChild(deleteBtn);
-
-        li.appendChild(span);
-        li.appendChild(div);
-
-        list.appendChild(li);
+    taskInput.addEventListener("keypress", function(e) {
+        if (e.key === "Enter") addTask();
     });
 
-    document.getElementById("info").innerText = data.length + " tugas";
-}
+    function addTask() {
+        const taskText = taskInput.value.trim();
+        if(taskText === "") return;
 
-// CREATE
-function tambah() {
-    let input = document.getElementById("taskInput");
+        const li = document.createElement("li");
+        li.textContent = taskText;
 
-    if (input.value === "") {
-        alert("Isi dulu!");
-        return;
+        // Tombol hapus
+        const deleteBtn = document.createElement("button");
+        deleteBtn.textContent = "Hapus";
+        deleteBtn.className = "delete-btn";
+
+        deleteBtn.addEventListener("click", () => {
+            li.classList.add("fade-out");
+            setTimeout(() => li.remove(), 300); // animasi fade
+        });
+
+        li.appendChild(deleteBtn);
+        taskList.appendChild(li);
+
+        taskInput.value = "";
+        taskInput.focus();
     }
-
-    data.push(input.value);
-    input.value = "";
-    render();
-}
-
-// UPDATE
-function edit(index) {
-    let baru = prompt("Edit tugas:", data[index]);
-
-    if (baru !== null && baru !== "") {
-        data[index] = baru;
-        render();
-    }
-}
-
-// DELETE
-function hapus(index) {
-    data.splice(index, 1);
-    render();
-}
-
-// SEARCH
-function cari() {
-    let keyword = document.getElementById("searchInput").value.toLowerCase();
-
-    let hasil = data.filter(item =>
-        item.toLowerCase().includes(keyword)
-    );
-
-    render(hasil);
-}
-
-// load awal
-render();
+};

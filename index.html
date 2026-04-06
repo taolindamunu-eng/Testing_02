@@ -2,30 +2,18 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>Daftar Tugas</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List Lengkap</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="container">
+        <h2>To-Do List</h2>
+        <input type="text" id="taskInput" placeholder="Tambah tugas...">
+        <button id="addBtn">Tambah</button>
+        <ul id="taskList"></ul>
+    </div>
 
-<div class="container">
-    <h1>Daftar Tugas</h1>
-    <p>Atur dan selesaikan tugas harianmu</p>
-
-    <!-- INPUT -->
-    <input type="text" id="taskInput" placeholder="Tambah tugas...">
-    <button class="add-btn" onclick="tambah()">+</button>
-
-    <!-- SEARCH -->
-    <input type="text" id="searchInput" placeholder="Cari tugas...">
-    <button class="search-btn" onclick="cari()">Cari</button>
-    <button class="reset-btn" onclick="render()">Reset</button>
-
-    <!-- LIST -->
-    <ul id="list"></ul>
-
-    <div class="footer" id="info"></div>
-</div>
-
-<script src="script.js"></script>
+    <script src="index.js"></script>
 </body>
 </html>
